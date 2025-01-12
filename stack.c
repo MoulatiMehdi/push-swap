@@ -26,21 +26,22 @@ t_stack * t_stack_last(t_stack * head)
     return head;
 }
 
-void t_stack_push(t_stack **head,int number)
+t_stack * t_stack_push(t_stack **head,int number)
 {
     t_stack * p;
     t_stack * new_elem;
 
     if(head == NULL)
-        return ;
+        return NULL ;
     new_elem = t_stack_new(number);
     if(new_elem == NULL)
-        return;
+        return NULL;
     p = t_stack_last(*head);
     if(p == NULL)
         *head = new_elem;
     else
         p->next = new_elem;
+    return new_elem;
 }
 
 

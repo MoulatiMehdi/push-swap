@@ -11,9 +11,9 @@ typedef struct s_stack
 
 
 void t_stack_clear(t_stack ** head);
-void t_stack_push(t_stack ** stack,int number);
 void t_stack_print(t_stack * head);
 
+t_stack * t_stack_push(t_stack ** stack,int number);
 t_stack * t_stack_last(t_stack * head);
 t_stack * t_stack_pop(t_stack ** head);
 

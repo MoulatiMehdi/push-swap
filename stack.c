@@ -34,6 +34,8 @@ void t_stack_push(t_stack **head,int number)
     if(head == NULL)
         return ;
     new_elem = t_stack_new(number);
+    if(new_elem == NULL)
+        return;
     p = t_stack_last(*head);
     if(p == NULL)
         *head = new_elem;

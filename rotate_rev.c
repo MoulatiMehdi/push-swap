@@ -3,7 +3,7 @@
 /*
  * Shift down all elements of `stack` by 1.The first element becomes the last one.
  * */
-void rotate_rev(t_stack **stack)
+static void rotate_rev(t_stack **stack)
 {
     t_stack * prev_last;
     t_stack * last;

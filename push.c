@@ -4,7 +4,7 @@
  * Take the first element at the top of `b` and put it at the top of `a`.
  * Do nothing if `b` is empty.
  * */
-void push(t_stack ** a,t_stack **b)
+static void push(t_stack ** a,t_stack **b)
 {
     t_stack * to_push;
 

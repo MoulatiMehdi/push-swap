@@ -10,8 +10,15 @@ typedef struct s_game
     t_stack* b;
 }t_game;
 
+/*
+ *  Create a new instance for `t_game` object and initialize the stack `a` with the numbers in `nbrs` array
+ * */
+t_game * t_game_new(int * nbrs,unsigned long size);
 
-
+/*
+ * Clean up the all the stack and sets the pointer `t_game *` object to `NULL`
+ * */
+void t_game_clear(t_game ** game);
 /*
  * Swap the first 2 elements at the top of stack `a`.
  * Do nothing if there is only one or no elements.

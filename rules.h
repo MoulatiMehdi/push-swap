@@ -1,7 +1,7 @@
 #ifndef RULES_H
 
 #define RULES_H
-#include "../stack/stack.h"
+#include "../../stack/stack.h"
 
 
 typedef struct s_game
@@ -72,4 +72,5 @@ void rrb(t_game * game);
  * */
 void rrr(t_game * game);
 
+void t_game_print(t_game * game);
 #endif

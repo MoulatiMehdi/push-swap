@@ -1,4 +1,5 @@
 #include "rules.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -27,16 +28,29 @@ t_game * t_game_new(int * nbrs,unsigned long size)
     game->a = NULL;
     game->b = NULL;
 
-    while(i < size)
+    if(nbrs != NULL)
     {
-        if(t_stack_push(&game->a, nbrs[i]) == NULL)
+        while(i < size)
         {
-            t_game_clear(&game);
-            return NULL;
+            if(t_stack_push(&game->a, nbrs[i]) == NULL)
+            {
+                t_game_clear(&game);
+                return NULL;
+            }
+            i++;
         }
-        i++;
     }
     return game;
+}
+
+void t_game_print(t_game * game)
+{
+    if(game == NULL)
+        return ;
+    printf("A : ");
+    t_stack_print(game->a);
+    printf("B : ");
+    t_stack_print(game->b);
 }
 
 

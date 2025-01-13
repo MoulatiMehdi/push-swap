@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:36:19 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/13 18:49:39 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:01:23 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ typedef struct s_stack
 	int				num;
 	struct s_stack	*next;
 }					t_stack;
-
-int					t_stack_exist(t_stack *head, int num);
 
 void				t_stack_clear(t_stack **head);
 void				t_stack_print(t_stack *head);

@@ -1,115 +1,119 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 18:52:40 by mmoulati          #+#    #+#             */
+/*   Updated: 2025/01/13 18:58:41 by mmoulati         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rules.h"
 #include "unistd.h"
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int ft_atoi(char ** str,t_state * state)
+int	t_stack_exist(t_stack *head, int num)
 {
-    long	res;
-    int				sign;
-    int				c;
-
-    sign = 1;
-    res = 0;
-    while (**str == 32)
-        (*str)++;
-    if (**str == '-' || **str == '+')
-    {   
-        if (**str == '-')
-            sign = -1;
-        (*str)++;
-    }
-    if(**str < '0' || **str > '9')
-        return *state = ERR_NUMBER_FORMAT;
-    while (**str >= '0' && **str<= '9')
-    {
-        c = **str - '0';
-        res = 10 * res + c;
-        if(res > 2147483647L + (sign == -1))
-            return *state = ERR_NUMBER_TOO_LARGE;    
-        (*str)++;
-    }
-    while (**str == 32)
-        (*str)++;
-    return (res * sign);
-
+	while (head != NULL)
+	{
+		if (head->num == num)
+			return (1);
+		head = head->next;
+	}
+	return (0);
 }
 
-
-void t_game_clear(t_game ** game)
+int	ft_atoi(char **str, t_state *state)
 {
-    if(game == NULL)
-        return ;
-    if(*game != NULL)
-    {
-        t_stack_clear(&(*game)->a);
-        t_stack_clear(&(*game)->b);
-    }
-    free(*game);
-    *game = NULL;
+	long	res;
+	int		sign;
+	int		c;
+
+	sign = 1;
+	res = 0;
+	while (**str == 32)
+		(*str)++;
+	if (**str == '-' || **str == '+')
+		if (*(*str)++ == '-')
+			sign = -1;
+	if (**str < '0' || **str > '9')
+		return (*state = ERR_NUMBER_FORMAT);
+	while (**str >= '0' && **str <= '9')
+	{
+		c = **str - '0';
+		res = 10 * res + c;
+		if (res > 2147483647L + (sign == -1))
+			return (*state = ERR_NUMBER_TOO_LARGE);
+		(*str)++;
+	}
+	while (**str == 32)
+		(*str)++;
+	return (res * sign);
 }
 
-void t_game_parse(t_game ** game,char * str)
+void	t_game_clear(t_game **game)
 {
-    t_state state;
-    int num;
-
-    state = OK;
-    if(*str == '\0')
-        state = ERR_NUMBER_FORMAT;
-    while(*str) 
-    {
-        num = ft_atoi(&str,&state);
-        if(state != OK)
-            break;
-        if(t_stack_exist((*game)->a,num))
-            state = ERR_NUMBER_EXIST;
-        if(state != OK)
-            break;
-        if(t_stack_push(&(*game)->a, num) == NULL)
-            state = ERR_MALLOC_FAILED;
-        if(state != OK)
-            break;
-    }
-    if(state != OK)
-    {
-        t_game_clear(game);
-        write(2,"Error\n",6); 
-        exit(1);
-    }
+	if (game == NULL)
+		return ;
+	if (*game != NULL)
+	{
+		t_stack_clear(&(*game)->a);
+		t_stack_clear(&(*game)->b);
+	}
+	free(*game);
+	*game = NULL;
 }
 
-t_game * t_game_new(long argc,char** argv)
+void	t_game_parse(t_game **game, char *str)
 {
-    t_game * game;
-    long i;
+	t_state	state;
+	int		num;
 
-    if(argc < 2)
-        return NULL;
-    game = malloc(sizeof(t_game));
-    if(game == NULL)
-        return NULL;
-    i = 1; 
-    game->a = NULL;
-    game->b = NULL;
-    while(i < argc)
-    {
-        t_game_parse(&game,argv[i]);
-        i++;
-    }
-    return game;
+	state = OK;
+	if (*str == '\0')
+		state = ERR_NUMBER_FORMAT;
+	while (*str)
+	{
+		num = ft_atoi(&str, &state);
+		if (state != OK)
+			break ;
+		if (t_stack_exist((*game)->a, num))
+			state = ERR_NUMBER_EXIST;
+		if (state != OK)
+			break ;
+		if (t_stack_push(&(*game)->a, num) == NULL)
+			state = ERR_MALLOC_FAILED;
+		if (state != OK)
+			break ;
+	}
+	if (state == OK)
+		return ;
+	t_game_clear(game);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
-
-void t_game_print(t_game * game)
+t_game	*t_game_new(long argc, char **argv)
 {
-    if(game == NULL)
-        return ;
-    printf("A : ");
-    t_stack_print(game->a);
-    printf("B : ");
-    t_stack_print(game->b);
+	t_game	*game;
+	long	i;
+
+	if (argc < 2)
+		return (NULL);
+	game = malloc(sizeof(t_game));
+	if (game == NULL)
+		return (NULL);
+	i = 1;
+	game->a = NULL;
+	game->b = NULL;
+	while (i < argc)
+	{
+		t_game_parse(&game, argv[i]);
+		i++;
+	}
+	return (game);
 }
-
-

@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 18:36:19 by mmoulati          #+#    #+#             */
+/*   Updated: 2025/01/13 18:49:39 by mmoulati         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STACK_H
 
-#define STACK_H
-#define NULL ((void *) 0 )
+# define STACK_H
 
-typedef struct s_stack 
+# include <stdlib.h>
+
+typedef struct s_stack
 {
-    int num;
-    struct s_stack *next;
-} t_stack;
+	int				num;
+	struct s_stack	*next;
+}					t_stack;
 
+int					t_stack_exist(t_stack *head, int num);
 
-int t_stack_exist(t_stack * head,int num);
+void				t_stack_clear(t_stack **head);
+void				t_stack_print(t_stack *head);
 
-void t_stack_clear(t_stack ** head);
-void t_stack_print(t_stack * head);
-
-t_stack * t_stack_push(t_stack ** stack,int number);
-t_stack * t_stack_last(t_stack * head);
-t_stack * t_stack_pop(t_stack ** head);
+t_stack				*t_stack_push(t_stack **stack, int number);
+t_stack				*t_stack_last(t_stack *head);
+t_stack				*t_stack_pop(t_stack **head);
 
 #endif

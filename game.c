@@ -59,20 +59,18 @@ void t_game_parse(t_game ** game,char * str)
         num = ft_atoi(str,&state);
         if(state != OK)
             break;
-        if(t_stack_exist(&(*game)->a,num))
-        {
+        if(t_stack_exist((*game)->a,num))
             state = ERR_NUMBER_EXIST;
-        }
-        if(t_stack_push(&(*game)->a, num) == NULL)
-        {
-            state = ERR_MALLOC_FAILED;
+        if(state != OK)
             break;
-        }
+        if(t_stack_push(&(*game)->a, num) == NULL)
+            state = ERR_MALLOC_FAILED;
+        if(state != OK)
+            break;
     }
-
     if(state != OK)
     {
-        t_game_clear(&(*game));
+        t_game_clear(game);
         write(2,"Error\n",6); 
         exit(1);
     }

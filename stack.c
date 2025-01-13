@@ -66,6 +66,17 @@ t_stack * t_stack_pop(t_stack ** head)
     return p;
 }
 
+int t_stack_exist(t_stack * head,int num)
+{
+    while(head != NULL)
+    {
+        if(head->num == num)
+            return 1;
+        head = head-> next;
+    }
+    return 0;
+}
+
 void t_stack_print(t_stack * head)
 {
     while(head != NULL)

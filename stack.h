@@ -10,6 +10,8 @@ typedef struct s_stack
 } t_stack;
 
 
+int t_stack_exist(t_stack * head,int num);
+
 void t_stack_clear(t_stack ** head);
 void t_stack_print(t_stack * head);
 

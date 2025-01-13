@@ -6,17 +6,13 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:40 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/13 18:58:41 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:05:20 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rules.h"
-#include "unistd.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-int	t_stack_exist(t_stack *head, int num)
+static int	t_stack_exist(t_stack *head, int num)
 {
 	while (head != NULL)
 	{

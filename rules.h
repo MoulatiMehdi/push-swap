@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:53:37 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/13 18:57:10 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:04:48 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define RULES_H
 # include "stack.h"
+# include <unistd.h>
 
 typedef enum e_state
 {

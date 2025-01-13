@@ -1,6 +1,38 @@
 #include "rules.h"
+#include "unistd.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+int ft_atoi(const char * str,t_state * state)
+{
+    long	res;
+    int				sign;
+    int				c;
+
+    sign = 1;
+    res = 0;
+
+    while (*str == 32)
+        str++;
+    if (*str == '-' || *str == '+')
+        if (*str++ == '-')
+            sign = -1;
+    if(*str < '0' || *str > '9')
+        return *state = ERR_NUMBER_FORMAT;
+    while (*str >= '0' && *str<= '9')
+    {
+        c = *str - '0';
+        res = 10 * res + c;
+        if(res > INT_MAX + (sign == -1))
+            return *state = ERR_NUMBER_TOO_LARGE;    
+        str++;
+    }
+    while (*str == 32)
+        str++;
+    return (res * sign);
+
+}
 
 
 void t_game_clear(t_game ** game)
@@ -16,32 +48,58 @@ void t_game_clear(t_game ** game)
     *game = NULL;
 }
 
-t_game * t_game_new(int * nbrs,unsigned long size)
+void t_game_parse(t_game ** game,char * str)
+{
+    t_state state;
+    int num;
+
+    state = OK;
+    while(*str) 
+    {
+        num = ft_atoi(str,&state);
+        if(state != OK)
+            break;
+        if(t_stack_exist(&(*game)->a,num))
+        {
+            state = ERR_NUMBER_EXIST;
+        }
+        if(t_stack_push(&(*game)->a, num) == NULL)
+        {
+            state = ERR_MALLOC_FAILED;
+            break;
+        }
+    }
+
+    if(state != OK)
+    {
+        t_game_clear(&(*game));
+        write(2,"Error\n",6); 
+        exit(1);
+    }
+}
+
+t_game * t_game_new(long argc,char** argv)
 {
     t_game * game;
-    unsigned long i;
+    long i;
 
     game = malloc(sizeof(t_game));
     if(game == NULL)
         return NULL;
-    i = 0; 
+    i = 1; 
     game->a = NULL;
     game->b = NULL;
 
-    if(nbrs != NULL)
+    if(argc < 2)
+        return NULL;
+    while(i < argc)
     {
-        while(i < size)
-        {
-            if(t_stack_push(&game->a, nbrs[i]) == NULL)
-            {
-                t_game_clear(&game);
-                return NULL;
-            }
-            i++;
-        }
+        t_game_parse(&game,argv[i]);
+        i++;
     }
     return game;
 }
+
 
 void t_game_print(t_game * game)
 {

@@ -1,8 +1,18 @@
 #ifndef RULES_H
 
 #define RULES_H
-#include "../../stack/stack.h"
+#include "stack.h"
 
+
+typedef enum e_state
+{
+    OK = 0,
+    ERR_NUMBER_FORMAT =-1,
+    ERR_NUMBER_TOO_LARGE,
+    ERR_NUMBER_EXIST,
+    ERR_MALLOC_FAILED,
+    ERR_FILE_READ,
+} t_state;
 
 typedef struct s_game
 {
@@ -13,7 +23,7 @@ typedef struct s_game
 /*
  *  Create a new instance for `t_game` object and initialize the stack `a` with the numbers in `nbrs` array
  * */
-t_game * t_game_new(int * nbrs,unsigned long size);
+t_game * t_game_new(long argc,char ** argv);
 
 /*
  * Clean up the all the stack and sets the pointer `t_game *` object to `NULL`

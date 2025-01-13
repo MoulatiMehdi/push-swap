@@ -8,10 +8,10 @@ typedef enum e_state
 {
     OK = 0,
     ERR_NUMBER_FORMAT =-1,
-    ERR_NUMBER_TOO_LARGE,
-    ERR_NUMBER_EXIST,
-    ERR_MALLOC_FAILED,
-    ERR_FILE_READ,
+    ERR_NUMBER_TOO_LARGE=-2,
+    ERR_NUMBER_EXIST=-3,
+    ERR_MALLOC_FAILED=-4,
+    ERR_FILE_READ=-5,
 } t_state;
 
 typedef struct s_game

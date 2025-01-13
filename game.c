@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ft_atoi(const char * str,t_state * state)
+int ft_atoi(char ** str,t_state * state)
 {
     long	res;
     int				sign;
@@ -12,24 +12,26 @@ int ft_atoi(const char * str,t_state * state)
 
     sign = 1;
     res = 0;
-
-    while (*str == 32)
-        str++;
-    if (*str == '-' || *str == '+')
-        if (*str++ == '-')
+    while (**str == 32)
+        (*str)++;
+    if (**str == '-' || **str == '+')
+    {   
+        if (**str == '-')
             sign = -1;
-    if(*str < '0' || *str > '9')
-        return *state = ERR_NUMBER_FORMAT;
-    while (*str >= '0' && *str<= '9')
-    {
-        c = *str - '0';
-        res = 10 * res + c;
-        if(res > INT_MAX + (sign == -1))
-            return *state = ERR_NUMBER_TOO_LARGE;    
-        str++;
+        (*str)++;
     }
-    while (*str == 32)
-        str++;
+    if(**str < '0' || **str > '9')
+        return *state = ERR_NUMBER_FORMAT;
+    while (**str >= '0' && **str<= '9')
+    {
+        c = **str - '0';
+        res = 10 * res + c;
+        if(res > 2147483647L + (sign == -1))
+            return *state = ERR_NUMBER_TOO_LARGE;    
+        (*str)++;
+    }
+    while (**str == 32)
+        (*str)++;
     return (res * sign);
 
 }
@@ -54,9 +56,11 @@ void t_game_parse(t_game ** game,char * str)
     int num;
 
     state = OK;
+    if(*str == '\0')
+        state = ERR_NUMBER_FORMAT;
     while(*str) 
     {
-        num = ft_atoi(str,&state);
+        num = ft_atoi(&str,&state);
         if(state != OK)
             break;
         if(t_stack_exist((*game)->a,num))
@@ -81,15 +85,14 @@ t_game * t_game_new(long argc,char** argv)
     t_game * game;
     long i;
 
+    if(argc < 2)
+        return NULL;
     game = malloc(sizeof(t_game));
     if(game == NULL)
         return NULL;
     i = 1; 
     game->a = NULL;
     game->b = NULL;
-
-    if(argc < 2)
-        return NULL;
     while(i < argc)
     {
         t_game_parse(&game,argv[i]);

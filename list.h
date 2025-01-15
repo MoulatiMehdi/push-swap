@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:20:42 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/15 14:04:26 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/15 18:34:53 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,7 @@ t_list				*t_list_enqueue(t_list **head, int num);
 t_list				*t_list_remove(t_list **head, t_list *item);
 
 void				t_list_clear(t_list **list);
+void				t_list_add_before(t_list **elem, t_list *new_item);
+void				t_list_add_after(t_list **elem, t_list *new_item);
+
 #endif

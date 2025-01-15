@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:31:15 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/14 21:45:35 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/15 17:05:14 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,24 @@ t_list	*t_list_enqueue(t_list **head, int num)
 	return (new_elem);
 }
 
-t_list	*t_list_remove(t_list **item)
+t_list	*t_list_remove(t_list **head, t_list *item)
 {
-	t_list	*elem;
-
-	if (item == NULL && *item == NULL)
-		return (NULL);
-	elem = *item;
-	if (elem->next == elem->prev && elem->prev == elem)
-		*item = NULL;
-	(*item)->prev->next = elem->next;
-	(*item)->next->prev = elem->prev;
-	return (elem);
+	if (head == NULL || *head == NULL || item == NULL)
+		return (item);
+	if (*head == item)
+	{
+		if ((*head)->next == item && (*head)->prev == item)
+		{
+			*head = NULL;
+			return (item);
+		}
+		*head = item->next;
+	}
+	item->prev->next = item->next;
+	item->next->prev = item->prev;
+	item->next = item;
+	item->prev = item;
+	return (item);
 }
 
 void	t_list_clear(t_list **list)
@@ -83,13 +89,12 @@ void	t_list_clear(t_list **list)
 	p = start;
 	while (1)
 	{
-		printf("%d\n", p->num);
 		tmp = p->next;
 		p->next = NULL;
 		p->prev = NULL;
 		free(p);
 		p = tmp;
-		if (p != start)
+		if (p == start)
 			break ;
 	}
 	*list = NULL;

@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:31:15 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:26 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/15 20:30:35 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,6 @@ t_list	*t_list_push(t_list **head, int num)
 	new_elem->next = *head;
 	(*head)->prev = new_elem;
 	new_elem->prev->next = new_elem;
-	return (new_elem);
-}
-
-t_list	*t_list_enqueue(t_list **head, int num)
-{
-	t_list	*new_elem;
-
-	if (head == NULL)
-		return (NULL);
-	new_elem = t_list_push(head, num);
-	if (!new_elem)
-		return (NULL);
-	*head = new_elem;
 	return (new_elem);
 }
 

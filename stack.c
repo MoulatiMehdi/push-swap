@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:35:50 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/16 14:58:35 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:22:52 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ t_stack	*t_stack_push(t_stack **head, int number)
 	while (p->next != NULL)
 	{
 		rank += (number > p->num);
-		p->num += !(number > p->num);
+		p->rank += !(number > p->num);
 		p = p->next;
 	}
 	p->next = new_elem;
 	rank += (number > p->num);
-	p->num += !(number > p->num);
+	p->rank += !(number > p->num);
 	new_elem->rank = rank;
 	return (new_elem);
 }

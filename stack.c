@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:48:25 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/15 18:19:06 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/16 08:41:29 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ t_stack	*t_stack_new(void)
 	stack->a = NULL;
 	stack->b = NULL;
 	return (stack);
+}
+
+t_list	*t_stack_push(t_stack **stack, int num)
+{
+	if (stack == NULL || *stack == NULL)
+		return (NULL);
+	return (t_list_push(&(*stack)->a, num));
 }
 
 void	t_stack_clear(t_stack **stack)

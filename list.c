@@ -6,12 +6,11 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:31:15 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/15 20:30:35 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/16 08:44:39 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
-#include <stdio.h>
 
 t_list	*t_list_new(int num)
 {
@@ -85,4 +84,20 @@ void	t_list_clear(t_list **list)
 			break ;
 	}
 	*list = NULL;
+}
+
+int	t_list_exist(t_list *head, int num)
+{
+	t_list	*p;
+
+	if (head == NULL)
+		return (0);
+	p = head->next;
+	while (p != head)
+	{
+		if (p->num == num)
+			return (1);
+		p = p->next;
+	}
+	return (p->num == num);
 }

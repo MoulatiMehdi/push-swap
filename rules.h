@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:53:37 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/16 15:29:01 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:07:42 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void				sa(t_game *game);
  * Do nothing if there is only one or no elements.
  * */
 void				sb(t_game *game);
+
+/*
+ * Swap the first 2 elements at the top of stack `b`.
+ * Do nothing if there is only one or no elements.
+ * */
+void				ss(t_game *game);
 
 /*
  * Take the first element at the top of `b` and put it at the top of `a`.

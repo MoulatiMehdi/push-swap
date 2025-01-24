@@ -86,6 +86,7 @@ void	t_game_parse(t_game **game, char *str)
 			state = ERR_MALLOC_FAILED;
 		if (state != OK)
 			break ;
+        (*game)->size ++;
 	}
 	if (state == OK)
 		return ;
@@ -108,7 +109,7 @@ t_game	*t_game_new(long argc, char **argv)
 	game->a = NULL;
 	game->b = NULL;
 	game->move = NULL;
-	game->size = argc - 1;
+	game->size = 0;
 	while (i < argc)
 	{
 		t_game_parse(&game, argv[i]);

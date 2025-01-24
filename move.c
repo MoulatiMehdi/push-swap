@@ -1,6 +1,4 @@
-#include "move.h"
-#include "stack.h"
-#include <unistd.h>
+#include "rules.h"
 
 void t_move_print(int num)
 {
@@ -65,10 +63,15 @@ void t_move_rot(int mov[11])
 }
 
 
-void t_move_optimize(t_stack * head)
+void t_game_solution(t_game * game)
 {
+    t_stack * head;
     int count [11];
     int i;
+
+    if(game == NULL)
+        return ;
+    head = game->move;
     if(head == NULL)
         return ;
     i = 0;
@@ -88,3 +91,4 @@ void t_move_optimize(t_stack * head)
     }
     t_move_rot(count);
 }
+

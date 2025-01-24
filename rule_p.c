@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "rules.h"
+#include "stack.h"
 
 /*
  * Take the first element at the top of `b` and put it at the top of `a`.
@@ -33,6 +34,7 @@ void	pa(t_game *game)
 	if (game == NULL)
 		return ;
 	push(&game->a, &game->b);
+    t_stack_push(&game->move, MOV_PA);
 }
 
 void	pb(t_game *game)
@@ -40,4 +42,5 @@ void	pb(t_game *game)
 	if (game == NULL)
 		return ;
 	push(&game->b, &game->a);
+    t_stack_push(&game->move, MOV_PB);
 }

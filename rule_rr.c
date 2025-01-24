@@ -40,6 +40,7 @@ void	rra(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate_rev(&game->a);
+    t_stack_push(&game->move, MOV_RRA);
 }
 
 void	rrb(t_game *game)
@@ -47,12 +48,13 @@ void	rrb(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate_rev(&game->b);
+    t_stack_push(&game->move, MOV_RRB);
 }
 
 void	rrr(t_game *game)
 {
 	if (game == NULL)
 		return ;
-	rra(game);
-	rrb(game);
+	rotate_rev(&game->a);
+	rotate_rev(&game->b);
 }

@@ -14,6 +14,7 @@
 
 # define RULES_H
 # include "stack.h"
+# include "move.h"
 # include <unistd.h>
 
 typedef enum e_state
@@ -31,6 +32,7 @@ typedef struct s_game
 	t_stack			*a;
 	t_stack			*b;
 	unsigned int	size;
+    t_stack         *move;
 }					t_game;
 
 /*
@@ -42,6 +44,8 @@ t_game				*t_game_new(long argc, char **argv);
  * Clean up the all the stack and sets the pointer `t_game *` object to `NULL`
  * */
 void				t_game_clear(t_game **game);
+
+void t_game_solution(t_game * game);
 
 /*
  * Swap the first 2 elements at the top of stack `a`.

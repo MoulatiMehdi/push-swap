@@ -1,6 +1,6 @@
-#ifndef MOVE_H 
+#ifndef MOVE_H
 
-#include "stack.h"
+#define MOVE_H
 
 typedef enum e_move
 {
@@ -18,6 +18,5 @@ typedef enum e_move
 
 } t_move;
 
-void t_move_optimize(t_stack * head);
 
 #endif 

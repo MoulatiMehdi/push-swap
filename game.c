@@ -59,7 +59,8 @@ void	t_game_clear(t_game **game)
 	{
 		t_stack_clear(&(*game)->a);
 		t_stack_clear(&(*game)->b);
-	}
+		t_stack_clear(&(*game)->move);
+    }
 	free(*game);
 	*game = NULL;
 }
@@ -106,6 +107,7 @@ t_game	*t_game_new(long argc, char **argv)
 	i = 1;
 	game->a = NULL;
 	game->b = NULL;
+	game->move = NULL;
 	game->size = argc - 1;
 	while (i < argc)
 	{

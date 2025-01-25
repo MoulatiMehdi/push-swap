@@ -18,7 +18,7 @@ void t_move_print(int num)
         write(1,"rb\n",3);
     if(num == MOV_RR)
         write(1,"rr\n",3);
-    if(num ==MOV_RRA)
+    if(num == MOV_RRA)
         write(1,"rra\n",4);
     if(num == MOV_RRB )
         write(1,"rrb\n",4);
@@ -39,6 +39,16 @@ void t_move_rot(int mov[11])
         mov[MOV_RA] ++;
         mov[MOV_RB] ++;
         t_move_print(MOV_RRR);
+    }
+    while(mov[MOV_RR] < 0)
+    {
+        mov[MOV_RR] ++;
+        t_move_print(MOV_RRA);
+    }
+    while(mov[MOV_RR] > 0)
+    {
+        mov[MOV_RR] --;
+        t_move_print(MOV_RA);
     }
     while(mov[MOV_RA] < 0)
     {

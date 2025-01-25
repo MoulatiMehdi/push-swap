@@ -26,48 +26,38 @@ void t_move_print(int num)
         write(1,"rrr\n",4);
 }
 
-void t_move_rot(int mov[11])
+void t_move_rot(int ra,int rb)
 {
-    while(mov[MOV_RA] > 0 && mov[MOV_RB] > 0)
+    while(ra > 0 && rb > 0)
     {
-        mov[MOV_RA] --;
-        mov[MOV_RB] --;
+        ra --;
+        rb --;
         t_move_print(MOV_RR);
     }
-    while(mov[MOV_RA] < 0 && mov[MOV_RB] < 0)
+    while(ra < 0 && rb < 0)
     {
-        mov[MOV_RA] ++;
-        mov[MOV_RB] ++;
+        ra ++;
+        rb ++;
         t_move_print(MOV_RRR);
     }
-    while(mov[MOV_RR] < 0)
+    while(ra < 0)
     {
-        mov[MOV_RR] ++;
+        ra ++;
         t_move_print(MOV_RRA);
     }
-    while(mov[MOV_RR] > 0)
+    while(ra > 0)
     {
-        mov[MOV_RR] --;
+        ra --;
         t_move_print(MOV_RA);
     }
-    while(mov[MOV_RA] < 0)
+    while(rb > 0)
     {
-        mov[MOV_RA] ++;
-        t_move_print(MOV_RRA);
-    }
-    while(mov[MOV_RA] > 0)
-    {
-        mov[MOV_RA] --;
-        t_move_print(MOV_RA);
-    }
-    while(mov[MOV_RB] > 0)
-    {
-        mov[MOV_RB] --;
+        rb --;
         t_move_print(MOV_RB);
     }
-    while(mov[MOV_RB] < 0)
+    while(rb < 0)
     {
-        mov[MOV_RB] ++;
+        rb ++;
         t_move_print(MOV_RRB);
     }
 }
@@ -76,29 +66,29 @@ void t_move_rot(int mov[11])
 void t_game_solution(t_game * game)
 {
     t_stack * head;
-    int count [11];
-    int i;
+    int ra;
+    int rb;
 
-    if(game == NULL)
+    if(game == NULL || game->move == NULL)
         return ;
     head = game->move;
-    if(head == NULL)
-        return ;
-    i = 0;
-    while(i < 11)
-        count[i++] = 0;
+    ra = 0;
+    rb = 0;
     while(head)
     {
+        ra+= (head->num == MOV_RA || head->num == MOV_RR);
+        rb+=(head->num == MOV_RB || head->num == MOV_RR);
+        ra-=(head->num == MOV_RRA || head->num == MOV_RRR);
+        rb-=(head->num == MOV_RRB || head->num == MOV_RRR);
         if(head->num < 4)
-        {
-            t_move_rot(count);
+        { 
+            t_move_rot(ra,rb);
+            ra = 0;
+            rb = 0;
             t_move_print(head->num);            
-        }else if(head->num >= MOV_RRA)
-            count[head->num - 3] --;
-        else
-            count[head->num] ++;
+        }
         head = head->next;
     }
-    t_move_rot(count);
+    t_move_rot(ra,rb);
 }
 

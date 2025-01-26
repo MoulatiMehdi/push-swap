@@ -45,7 +45,10 @@ t_game				*t_game_new(long argc, char **argv);
  * */
 void				t_game_clear(t_game **game);
 
-void				t_game_solution(t_game *game);
+/*
+ *
+ * */
+int					t_game_is_sorted(t_game *game);
 
 /*
  * Swap the first 2 elements at the top of stack `a`.

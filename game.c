@@ -12,7 +12,7 @@
 
 #include "rules.h"
 
-int	ft_atoi(char **str, t_state *state)
+static int	ft_atoi(char **str, t_state *state)
 {
 	long	res;
 	int		sign;
@@ -38,21 +38,7 @@ int	ft_atoi(char **str, t_state *state)
 	return (res * sign);
 }
 
-void	t_game_clear(t_game **game)
-{
-	if (game == NULL)
-		return ;
-	if (*game != NULL)
-	{
-		t_stack_clear(&(*game)->a);
-		t_stack_clear(&(*game)->b);
-		t_stack_clear(&(*game)->move);
-	}
-	free(*game);
-	*game = NULL;
-}
-
-void	t_game_parse(t_game **game, char *str)
+static void	t_game_parse(t_game **game, char *str)
 {
 	t_state	state;
 	int		num;
@@ -78,6 +64,20 @@ void	t_game_parse(t_game **game, char *str)
 	exit(1);
 }
 
+void	t_game_clear(t_game **game)
+{
+	if (game == NULL)
+		return ;
+	if (*game != NULL)
+	{
+		t_stack_clear(&(*game)->a);
+		t_stack_clear(&(*game)->b);
+		t_stack_clear(&(*game)->move);
+	}
+	free(*game);
+	*game = NULL;
+}
+
 t_game	*t_game_new(long argc, char **argv)
 {
 	t_game	*game;
@@ -101,7 +101,23 @@ t_game	*t_game_new(long argc, char **argv)
 	return (game);
 }
 
-void	t_game_solve(t_game *game)
+int	t_game_is_sorted(t_game *game)
 {
-	t_move_optimize(game->move);
+	int		count;
+	t_stack	*p;
+
+	if (game == NULL)
+		return (1);
+	count = 1;
+	p = game->a;
+	if (p == NULL)
+		return (0);
+	while (p->next != NULL)
+	{
+		if (p->num > p->next->num)
+			break ;
+		count++;
+		p = p->next;
+	}
+	return (count == game->size);
 }

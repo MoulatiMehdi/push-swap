@@ -36,8 +36,6 @@ void	sb(t_game *game)
 
 void	ss(t_game *game)
 {
-    if(game == NULL)
-        return ;
-	swap(&game->a);
-	swap(&game->a);
+	sa(game);
+	sb(game);
 }

@@ -76,10 +76,10 @@ void t_game_solution(t_game * game)
     rb = 0;
     while(head)
     {
-        ra+= (head->num == MOV_RA || head->num == MOV_RR);
-        rb+=(head->num == MOV_RB || head->num == MOV_RR);
-        ra-=(head->num == MOV_RRA || head->num == MOV_RRR);
-        rb-=(head->num == MOV_RRB || head->num == MOV_RRR);
+        ra += (head->num == MOV_RA || head->num == MOV_RR);
+        rb += (head->num == MOV_RB || head->num == MOV_RR);
+        ra -= (head->num == MOV_RRA || head->num == MOV_RRR);
+        rb -= (head->num == MOV_RRB || head->num == MOV_RRR);
         if(head->num < 4)
         { 
             t_move_rot(ra,rb);

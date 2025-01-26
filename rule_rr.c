@@ -43,6 +43,6 @@ void	rrr(t_game *game)
 {
 	if (game == NULL)
 		return ;
-	rotate_rev(&game->a);
-	rotate_rev(&game->b);
+	rra(game);
+	rrb(game);
 }

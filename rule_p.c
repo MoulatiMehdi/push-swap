@@ -22,7 +22,7 @@ void	pa(t_game *game)
 	if (game == NULL)
 		return ;
 	push(&game->a, &game->b);
-    t_stack_push(&game->move, MOV_PA);
+	t_stack_push(&game->move, MOV_PA);
 }
 
 void	pb(t_game *game)
@@ -30,5 +30,5 @@ void	pb(t_game *game)
 	if (game == NULL)
 		return ;
 	push(&game->b, &game->a);
-    t_stack_push(&game->move, MOV_PB);
+	t_stack_push(&game->move, MOV_PB);
 }

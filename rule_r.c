@@ -22,7 +22,7 @@ void	ra(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate(&game->a);
-    t_stack_push(&game->move, MOV_RA);
+	t_stack_push(&game->move, MOV_RA);
 }
 
 void	rb(t_game *game)
@@ -30,7 +30,7 @@ void	rb(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate(&game->b);
-    t_stack_push(&game->move, MOV_RB);
+	t_stack_push(&game->move, MOV_RB);
 }
 
 void	rr(t_game *game)

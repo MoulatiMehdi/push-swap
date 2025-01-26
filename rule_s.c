@@ -23,7 +23,7 @@ void	sa(t_game *game)
 	if (game == NULL)
 		return ;
 	swap(&game->a);
-    t_stack_push(&game->move, MOV_SA);
+	t_stack_push(&game->move, MOV_SA);
 }
 
 void	sb(t_game *game)
@@ -31,7 +31,7 @@ void	sb(t_game *game)
 	if (game == NULL)
 		return ;
 	swap(&game->b);
-    t_stack_push(&game->move, MOV_SB);
+	t_stack_push(&game->move, MOV_SB);
 }
 
 void	ss(t_game *game)

@@ -103,7 +103,7 @@ t_game	*t_game_new(long argc, char **argv)
 
 int	t_game_is_sorted(t_game *game)
 {
-	int		count;
+	long		count;
 	t_stack	*p;
 
 	if (game == NULL)

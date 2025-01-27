@@ -35,12 +35,4 @@ long				t_stack_idx(t_stack *head, int num);
 long				t_stack_next_idx(t_stack *stack, int num);
 long				t_stack_prev_idx(t_stack *stack, int num);
 
-long				t_stack_size(t_stack *head);
-long				t_stack_max(t_stack *head);
-long				t_stack_min(t_stack *head);
-
-long				t_stack_idx(t_stack *head, int num);
-long				t_stack_next_idx(t_stack *stack, int num);
-long				t_stack_prev_idx(t_stack *stack, int num);
-
 #endif

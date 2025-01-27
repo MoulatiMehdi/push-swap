@@ -19,7 +19,6 @@
 typedef struct s_stack
 {
 	int				num;
-	unsigned int	rank;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -27,7 +26,6 @@ void				t_stack_clear(t_stack **head);
 
 t_stack				*t_stack_push(t_stack **stack, int number);
 t_stack				*t_stack_last(t_stack *head);
-t_stack				*t_stack_pop(t_stack **head);
 
 long				t_stack_size(t_stack *head);
 long				t_stack_max(t_stack *head);

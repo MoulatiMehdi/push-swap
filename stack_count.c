@@ -29,7 +29,7 @@ long	t_stack_num_at(t_stack *head, long idx)
 long	t_stack_max(t_stack *head)
 {
 	int		target;
-	int		i;
+	long	i;
 	t_stack	*tmp;
 
 	tmp = head;
@@ -48,7 +48,7 @@ long	t_stack_max(t_stack *head)
 long	t_stack_min(t_stack *head)
 {
 	int		target;
-	int		i;
+	long	i;
 	t_stack	*tmp;
 
 	tmp = head;

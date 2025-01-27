@@ -21,7 +21,6 @@ t_stack	*t_stack_new(int number)
 		return (NULL);
 	new_elem->num = number;
 	new_elem->next = NULL;
-	new_elem->rank = 0;
 	return (new_elem);
 }
 
@@ -40,27 +39,16 @@ t_stack	*t_stack_push(t_stack **head, int number)
 {
 	t_stack	*p;
 	t_stack	*new_elem;
-	int		rank;
 
 	if (head == NULL)
 		return (NULL);
 	new_elem = t_stack_new(number);
 	if (new_elem == NULL)
 		return (NULL);
-	p = *head;
+	p = t_stack_last(*head);
 	if (p == NULL)
 		return (*head = new_elem);
-	rank = 0;
-	while (p->next != NULL)
-	{
-		rank += (number > p->num);
-		p->rank += !(number > p->num);
-		p = p->next;
-	}
 	p->next = new_elem;
-	rank += (number > p->num);
-	p->rank += !(number > p->num);
-	new_elem->rank = rank;
 	return (new_elem);
 }
 

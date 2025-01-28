@@ -6,11 +6,11 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 22:10:35 by mmoulati          #+#    #+#             */
-/*   Updated: 2024/12/03 22:10:36 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:30:18 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 int	indexof_nl(char *str)
 {

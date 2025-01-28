@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 18:53:30 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/13 18:59:47 by mmoulati         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "rules.h"
 
 /*
@@ -34,6 +22,7 @@ void	ra(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate(&game->a);
+	t_stack_push(&game->move, MOV_RA);
 }
 
 void	rb(t_game *game)
@@ -41,6 +30,7 @@ void	rb(t_game *game)
 	if (game == NULL)
 		return ;
 	rotate(&game->b);
+	t_stack_push(&game->move, MOV_RB);
 }
 
 void	rr(t_game *game)

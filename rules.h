@@ -13,6 +13,7 @@
 #ifndef RULES_H
 
 # define RULES_H
+# include "move.h"
 # include "stack.h"
 # include <unistd.h>
 
@@ -31,6 +32,7 @@ typedef struct s_game
 	t_stack			*a;
 	t_stack			*b;
 	unsigned int	size;
+	t_stack			*move;
 }					t_game;
 
 /*
@@ -42,6 +44,11 @@ t_game				*t_game_new(long argc, char **argv);
  * Clean up the all the stack and sets the pointer `t_game *` object to `NULL`
  * */
 void				t_game_clear(t_game **game);
+
+/*
+ *
+ * */
+int					t_game_is_sorted(t_game *game);
 
 /*
  * Swap the first 2 elements at the top of stack `a`.

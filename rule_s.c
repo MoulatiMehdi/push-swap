@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rule_s.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 18:53:36 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/16 17:07:15 by mmoulati         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "rules.h"
 
 /*
@@ -35,6 +23,7 @@ void	sa(t_game *game)
 	if (game == NULL)
 		return ;
 	swap(&game->a);
+	t_stack_push(&game->move, MOV_SA);
 }
 
 void	sb(t_game *game)
@@ -42,6 +31,7 @@ void	sb(t_game *game)
 	if (game == NULL)
 		return ;
 	swap(&game->b);
+	t_stack_push(&game->move, MOV_SB);
 }
 
 void	ss(t_game *game)

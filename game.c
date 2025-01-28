@@ -12,22 +12,10 @@
 
 #include "rules.h"
 
-static int	t_stack_exist(t_stack *head, int num)
-{
-	while (head != NULL)
-	{
-		if (head->num == num)
-			return (1);
-		head = head->next;
-	}
-	return (0);
-}
-
-int	ft_atoi(char **str, t_state *state)
+static int	ft_atoi(char **str, t_state *state)
 {
 	long	res;
 	int		sign;
-	int		c;
 
 	sign = 1;
 	res = 0;
@@ -40,8 +28,7 @@ int	ft_atoi(char **str, t_state *state)
 		return (*state = ERR_NUMBER_FORMAT);
 	while (**str >= '0' && **str <= '9')
 	{
-		c = **str - '0';
-		res = 10 * res + c;
+		res = 10 * res + **str - '0';
 		if (res > 2147483647L + (sign == -1))
 			return (*state = ERR_NUMBER_TOO_LARGE);
 		(*str)++;
@@ -51,20 +38,7 @@ int	ft_atoi(char **str, t_state *state)
 	return (res * sign);
 }
 
-void	t_game_clear(t_game **game)
-{
-	if (game == NULL)
-		return ;
-	if (*game != NULL)
-	{
-		t_stack_clear(&(*game)->a);
-		t_stack_clear(&(*game)->b);
-	}
-	free(*game);
-	*game = NULL;
-}
-
-void	t_game_parse(t_game **game, char *str)
+static void	t_game_parse(t_game **game, char *str)
 {
 	t_state	state;
 	int		num;
@@ -75,22 +49,33 @@ void	t_game_parse(t_game **game, char *str)
 	while (*str)
 	{
 		num = ft_atoi(&str, &state);
-		if (state != OK)
-			break ;
-		if (t_stack_exist((*game)->a, num))
+		if (state == OK && t_stack_idx((*game)->a, num) >= 0)
 			state = ERR_NUMBER_EXIST;
-		if (state != OK)
-			break ;
-		if (t_stack_push(&(*game)->a, num) == NULL)
+		if (state == OK && t_stack_push(&(*game)->a, num) == NULL)
 			state = ERR_MALLOC_FAILED;
 		if (state != OK)
 			break ;
+		(*game)->size++;
 	}
 	if (state == OK)
 		return ;
 	t_game_clear(game);
 	write(2, "Error\n", 6);
 	exit(1);
+}
+
+void	t_game_clear(t_game **game)
+{
+	if (game == NULL)
+		return ;
+	if (*game != NULL)
+	{
+		t_stack_clear(&(*game)->a);
+		t_stack_clear(&(*game)->b);
+		t_stack_clear(&(*game)->move);
+	}
+	free(*game);
+	*game = NULL;
 }
 
 t_game	*t_game_new(long argc, char **argv)
@@ -106,11 +91,33 @@ t_game	*t_game_new(long argc, char **argv)
 	i = 1;
 	game->a = NULL;
 	game->b = NULL;
-	game->size = argc - 1;
+	game->move = NULL;
+	game->size = 0;
 	while (i < argc)
 	{
 		t_game_parse(&game, argv[i]);
 		i++;
 	}
 	return (game);
+}
+
+int	t_game_is_sorted(t_game *game)
+{
+	long		count;
+	t_stack	*p;
+
+	if (game == NULL)
+		return (1);
+	count = 1;
+	p = game->a;
+	if (p == NULL)
+		return (0);
+	while (p->next != NULL)
+	{
+		if (p->num > p->next->num)
+			break ;
+		count++;
+		p = p->next;
+	}
+	return (count == game->size);
 }

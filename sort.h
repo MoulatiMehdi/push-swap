@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/28 21:22:27 by mmoulati          #+#    #+#             */
+/*   Updated: 2025/01/28 21:24:14 by mmoulati         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SORT_H
 
 # define SORT_H
 
-# include "../bistack/rules.h"
+# include "rules.h"
 # include <stdbool.h>
 
 typedef void	(*t_func)(t_game *);
@@ -33,4 +45,4 @@ long			t_calc_best_a(t_game *game, long a_size);
 
 void			t_game_solve(t_game *game);
 
-#endif // !
+#endif

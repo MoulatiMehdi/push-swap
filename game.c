@@ -6,7 +6,7 @@
 /*   By: mmoulati <mmoulati@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:52:40 by mmoulati          #+#    #+#             */
-/*   Updated: 2025/01/28 22:54:02 by mmoulati         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:21:11 by mmoulati         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	ft_atoi(char **str, t_state *state)
 			return (*state = ERR_NUMBER_TOO_LARGE);
 		(*str)++;
 	}
+	if (**str != ' ' && **str != '\0')
+		return (*state = ERR_NUMBER_FORMAT);
 	while (**str == 32)
 		(*str)++;
 	return (res * sign);
